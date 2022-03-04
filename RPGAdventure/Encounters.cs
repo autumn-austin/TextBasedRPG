@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPGAdventure
 {
-    class Encounters
+    public class Encounters
     {
         static Random rand = new Random();
         //Encounter Generic
@@ -18,8 +18,39 @@ namespace RPGAdventure
             Console.WriteLine("that somewhat resembles a rat, but it is of unusual size.");
 
             Combat(false, "Ratbus", 1, 4);
-
         }
+
+        public static void BasicFightEncounter()
+        {
+            Console.Clear();
+            Console.WriteLine("");
+            Console.ReadKey();
+            Combat(true, "", 0, 0);
+        }
+
+        public static void MayorEncounter()
+        {
+            Console.WriteLine("You hear a shout from a distance and see a shadow running toward you.");
+            Console.WriteLine("You hold up your torch in defense when a soft voice approaches");
+            Console.WriteLine("'Hello, there! I heard some ruckus in the distance and though someone surely was in trouble.");
+            Console.WriteLine("It's the Mayor of this town... A very short and round fellow.");
+            Console.WriteLine("'You must be " + Program.currentPlayer.name + "!'");
+            Console.WriteLine("How does this rotund man know who you are...?");
+            Console.WriteLine("'We've been waiting for you...");
+            Console.ReadKey();
+        }
+
+        public static void RandomEncounter()
+        {
+            switch(rand.Next(0,1))
+            {
+                case 0:
+                    BasicFightEncounter();
+                    break;
+            }
+        }
+
+
         //Encounter Tools
         public static void Combat(bool random, string name, int power, int health)
         {
@@ -28,7 +59,9 @@ namespace RPGAdventure
             int h = 0;
             if(random)
             {
-
+                n = GetName();
+                p = Program.currentPlayer.GetPower();
+                h = Program.currentPlayer.GetHealth();
             }
             else
             {
@@ -111,7 +144,7 @@ namespace RPGAdventure
                     {
                         Console.WriteLine("You use your charm and wit to distract the " + n + " as you slink away to safety.");
                         Console.ReadKey();
-                        //go to town
+                        // CALL GO TO TOWN, FROM TOWN CAN ENTER STORE, CREATE CLASS FOR TOWN
                     }
                 }
                 else if (input.ToLower() == "h" || input.ToLower() == "heal")
@@ -144,8 +177,38 @@ namespace RPGAdventure
                     }
                     Console.ReadKey();
                 }
+                if(Program.currentPlayer.health <= 0)
+                {
+                    //Death Code
+                    Console.WriteLine("The " + n + " has killed you... Don't give up now!");
+                    Console.ReadKey();
+                    System.Environment.Exit(0);
+                }
                 Console.ReadKey();
             }
+            int c = rand.Next(10, 50);
+            Console.WriteLine("You did it... You killed the " + n + " and it dropped " + c + " gold.");
+            Console.WriteLine("Congratulations.");
+            Program.currentPlayer.gold += c;
+            Console.ReadKey();
+        }
+
+        public static string GetName()
+        {
+            switch(rand.Next(0, 4))
+            {
+                case 0:
+                    return "Skelebone";
+                case 1:
+                    return "Ghostopher";
+                case 2:
+                    return "Jeff";
+                case 3:
+                    return "Rogue Tree";
+                case 4:
+                    return "The Mooshlings";
+            }
+            return "Ratbus";
         }
 
     }
