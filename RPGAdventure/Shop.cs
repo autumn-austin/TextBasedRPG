@@ -23,8 +23,8 @@ namespace RPGAdventure
             while(true)
             {
                 potionPrice = 5 + 10 * p.mods;
-                armorPrice = 25 * p.armorValue;
-                weaponPrice = 20 * (p.weaponValue + 1);
+                armorPrice = 25 * (p.armorValue + 1);
+                weaponPrice = 20 * p.weaponValue;
                 difmodPrice = 300 + 100 * p.mods;
 
                 Console.Clear();
@@ -35,10 +35,13 @@ namespace RPGAdventure
                 Console.WriteLine("=(W)eapon : $" + weaponPrice);
                 Console.WriteLine("=(D)ifficulty : $" + difmodPrice);
                 Console.WriteLine("========================");
+                Console.WriteLine("          (E)xit        ");
+
                 Console.WriteLine("");
                 Console.WriteLine("");
                 Console.WriteLine("      Player Stats      ");
                 Console.WriteLine("========================");
+                Console.WriteLine("Gold: " + p.potion);
                 Console.WriteLine("Potion Inventory: " + p.potion);
                 Console.WriteLine("Weapon Level: " + p.weaponValue);
                 Console.WriteLine("Armor Level: " + p.armorValue);
@@ -48,7 +51,7 @@ namespace RPGAdventure
 
 
                 string input = Console.ReadLine().ToLower();
-                if(input == "p" || input == "potion")
+                if (input == "p" || input == "potion")
                 {
                     TryBuy("potion", potionPrice, p);
                 }
@@ -67,6 +70,8 @@ namespace RPGAdventure
                     TryBuy("difficulty", difmodPrice, p);
 
                 }
+                else if (input == "e" || input == "exit")
+                    break;
             }
         }
         static void TryBuy(string item, int cost, Player p)
