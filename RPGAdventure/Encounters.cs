@@ -12,32 +12,12 @@ namespace RPGAdventure
         //Encounter Generic
 
         //Encounters
-        public static void FirstEncounter()
-        {
-            Console.WriteLine("There stands a woodland creature ");
-            Console.WriteLine("that somewhat resembles a rat, but it is of unusual size.");
-
-            Combat(false, "Ratbus", 1, 4);
-        }
-
         public static void BasicFightEncounter()
         {
             Console.Clear();
             Console.WriteLine("");
             Console.ReadKey();
             Combat(true, "", 0, 0);
-        }
-
-        public static void MayorEncounter()
-        {
-            Console.WriteLine("You hear a shout from a distance and see a shadow running toward you.");
-            Console.WriteLine("You hold up your torch in defense when a soft voice approaches");
-            Console.WriteLine("'Hello, there! I heard some ruckus in the distance and though someone surely was in trouble.");
-            Console.WriteLine("It's the Mayor of this town... A very short and round fellow.");
-            Console.WriteLine("'You must be " + Program.currentPlayer.name + "!'");
-            Console.WriteLine("How does this rotund man know who you are...?");
-            Console.WriteLine("'We've been waiting for you...");
-            Console.ReadKey();
         }
 
         public static void RandomEncounter()
@@ -72,12 +52,6 @@ namespace RPGAdventure
             while(h > 0)
             {
                 Console.Clear();
-                Console.WriteLine("  ,,==.");
-                Console.WriteLine(" //    `");
-                Console.WriteLine("||      ,--~~~~-._ _(|--,_");
-                Console.WriteLine(" \\._,-~   )      '    *  `o");
-                Console.WriteLine("  `---~\\ _/,___( /_/`---~~");
-                Console.WriteLine("        ``==-    `==-,");
                 Console.WriteLine(n);
                 Console.WriteLine(p + "/" + h);
                 Console.WriteLine("========================");
@@ -87,6 +61,7 @@ namespace RPGAdventure
                 Console.WriteLine("========================");
                 Console.WriteLine("Potions: " + Program.currentPlayer.potion + " Health: " + Program.currentPlayer.health);
                 string input = Console.ReadLine();
+
                 if(input.ToLower() == "a"||input.ToLower() == "attack")
                 {
                     //attack
@@ -144,6 +119,7 @@ namespace RPGAdventure
                     {
                         Console.WriteLine("You use your charm and wit to distract the " + n + " as you slink away to safety.");
                         Console.ReadKey();
+                        Town.LoadTown(Program.currentPlayer);
                         // CALL GO TO TOWN, FROM TOWN CAN ENTER STORE, CREATE CLASS FOR TOWN
                     }
                 }
@@ -163,11 +139,12 @@ namespace RPGAdventure
                     else
                     {
                         Console.WriteLine("You frantically search your pockets...");
-                        Console.WriteLine("A giant red vial you pull from your pocket.");
+                        Console.WriteLine("You pull a giant red vial out.");
                         Console.WriteLine("How did that fit in there?\nYou drink the vial.");
                         int potionValue = 5;
                         Console.WriteLine("You gain " + potionValue + " health and get the jitters.");
                         Program.currentPlayer.health += potionValue;
+                        Program.currentPlayer.potion -= 1;
                         Console.WriteLine("You had your back turned searching your pockets...");
                         Console.WriteLine(n + " strikes you in the rear.");
                         int damage = (p / 2) - Program.currentPlayer.armorValue;
@@ -186,11 +163,13 @@ namespace RPGAdventure
                 }
                 Console.ReadKey();
             }
-            int c = rand.Next(10, 50);
+
+            int c = Program.currentPlayer.GetCoins();
             Console.WriteLine("You did it... You killed the " + n + " and it dropped " + c + " gold.");
             Console.WriteLine("Congratulations.");
             Program.currentPlayer.gold += c;
             Console.ReadKey();
+            Console.Clear();
         }
 
         public static string GetName()
@@ -198,17 +177,109 @@ namespace RPGAdventure
             switch(rand.Next(0, 4))
             {
                 case 0:
+                    Console.WriteLine("           ____________   ");
+                    Console.WriteLine("          |            | ");
+                    Console.WriteLine("          |            |");
+                    Console.WriteLine("      ____|____________|____");
+                    Console.WriteLine("         |,  .-.  .-.  ,|");
+                    Console.WriteLine("    ()   | )(__|  |__)( |");
+                    Console.WriteLine("  _ ()   |[     ()     ]|");
+                    Console.WriteLine("   ()    (_     ^^     _)   .-==(~)");
+                    Console.WriteLine("___/_,__,_(__|IIIIII|__)__)/   /{~}}");
+                    Console.WriteLine("---,---,---|-|IIIIII|-|---,\'-' {{~}");
+                    Console.WriteLine("            |        |      '-==(}/");
+                    Console.WriteLine("             '------'");
+                    Console.WriteLine("     'A rose for you? *wink*' ");
                     return "Skelebone";
+
                 case 1:
+                    Console.WriteLine("     .-.");
+                    Console.WriteLine("   .'   `.");
+                    Console.WriteLine("   :g g   :");
+                    Console.WriteLine("   : o    `.");
+                    Console.WriteLine("  :         ``.");
+                    Console.WriteLine(" :             `.");
+                    Console.WriteLine(":  :         .   `.");
+                    Console.WriteLine(":   :          ` . `.");
+                    Console.WriteLine(" `.. :            `. ``;");
+                    Console.WriteLine("    `:;             `:'");
+                    Console.WriteLine("       :              `.");
+                    Console.WriteLine("        `.              `.     .");
+                    Console.WriteLine("         `'`'`'`---..,___`;.-'");
+                    Console.WriteLine("        'Oooooo Spooooooky'      ");
                     return "Ghostopher";
+
                 case 2:
+                    Console.WriteLine("             ,,,,,,,,");
+                    Console.WriteLine("           ,|||````||||");
+                    Console.WriteLine("     ,,,,|||||       ||,");
+                    Console.WriteLine("  ,||||```````       `||");
+                    Console.WriteLine(",|||`                 |||,");
+                    Console.WriteLine("||`     ....,          `|||");
+                    Console.WriteLine("||     ::::::::          |||,");
+                    Console.WriteLine("||     :::::::'     ||    ``|||,");
+                    Console.WriteLine("||,     :::::'               `|||");
+                    Console.WriteLine("`||,                           |||");
+                    Console.WriteLine(" `|||,       ||          ||    ,||");
+                    Console.WriteLine("   `||                        |||`");
+                    Console.WriteLine("    ||                   ,,,||||");
+                    Console.WriteLine("    `|||,,               ,|||");
+                    Console.WriteLine("        ``|||||||||||||||`");
+                    Console.WriteLine("      'Existance... hurts...");
                     return "Jeff";
+
                 case 3:
+                    Console.WriteLine("              * *    ");
+                    Console.WriteLine("           *    *  *");
+                    Console.WriteLine("      *  *    *     *  *");
+                    Console.WriteLine("     *     *    *  *    *");
+                    Console.WriteLine(" * *   *    *    *    *   *");
+                    Console.WriteLine(" *     *  *    * * .|  *   *");
+                    Console.WriteLine(" *   *     * |.  .| *   *");
+                    Console.WriteLine("  *     *|.  |:  |  *  * *");
+                    Console.WriteLine(" *   * * |. ||      *  *  ");
+                    Console.WriteLine("   *       ;|||");
+                    Console.WriteLine("             ;||");
+                    Console.WriteLine("              ||;");
+                    Console.WriteLine("              ||||");
+                    Console.WriteLine("              ||||");
+                    Console.WriteLine("              ;|||");
+                    Console.WriteLine("            ,||||.");
+                    Console.WriteLine("           .||||||.");
+                    Console.WriteLine("         ||||||||||||");
+                    Console.WriteLine("'You can see it... I'm a tree! Boogey woogey woogey'");
                     return "Rogue Tree";
+
                 case 4:
+                    Console.WriteLine("        __.....__");
+                    Console.WriteLine("     .'' _  o    '`.");
+                    Console.WriteLine("   .' O (_)     () o`.");
+                    Console.WriteLine("  .           O       .");
+                    Console.WriteLine(" . ()   o__...__    O  .");
+                    Console.WriteLine(". _.--'''       '''--._ .");
+                    Console.WriteLine(":'                     ';");
+                    Console.WriteLine(" `-.__    :   :    __.-'");
+                    Console.WriteLine("      '''-:   :-'''");
+                    Console.WriteLine("         J     L");
+                    Console.WriteLine("         :     :");
+                    Console.WriteLine("        J       L");
+                    Console.WriteLine("        :       :");
+                    Console.WriteLine("        `._____.' ");
+                    Console.WriteLine(" 'My family has abandoned me...'");
+
                     return "The Mooshlings";
             }
+
+            Console.WriteLine("  ,,==.");
+            Console.WriteLine(" //    `");
+            Console.WriteLine("||      ,--~~~~-._ _(|--,_");
+            Console.WriteLine(" \\._,-~   )      '    *  `o");
+            Console.WriteLine("  `---~|( _/,___( /_/`---~~");
+            Console.WriteLine("        ``==-    `==-,");
+            Console.WriteLine("       *shakes violently* ");
+
             return "Ratbus";
+            
         }
 
     }
