@@ -16,8 +16,9 @@ namespace RPGAdventure
         static void Main(string[] args)
         {
             Story.Start();
-            Encounters.BasicFightEncounter();
+            Skelebone.EnemySkelebone();
             Story.MayorEncounter();
+            Story.TownGreeting();
         }
     }
 }
