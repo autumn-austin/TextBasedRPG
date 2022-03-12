@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPGAdventure
 {
-    public class FirstEncounter 
+    public class FirstEncounter
     {
         static Random rand = new Random();
         public static void FirstBattle()
