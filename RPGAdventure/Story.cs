@@ -151,7 +151,7 @@ namespace RPGAdventure
             Console.Clear();
             Console.WriteLine("'We've got an apartment for you! Why don't you go check that out, and then come back here and we can show you around?'");
             Console.WriteLine("Jude scratches his neck nervously. What a strange fellow.");
-
+            Console.ReadKey();
         }
     }
 }
