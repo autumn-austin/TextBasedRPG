@@ -50,7 +50,7 @@ namespace RPGAdventure
             }
             else if (input == "h" || input == "home")
             {
-
+                Apartment.LoadBedroom(Program.currentPlayer);
             }
             else if (input == "f" || input == "forest")
             {

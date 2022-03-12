@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace RPGAdventure
 {
-    public class Program
+    public class Program : Apartment
     {
         public static Player currentPlayer = new Player();
         public static bool mainLoop = true;
@@ -19,6 +19,7 @@ namespace RPGAdventure
             Story.MayorEncounter();
             Story.TownGreeting();
             Story.JudeGreeting();
+            
         }
     }
 }
