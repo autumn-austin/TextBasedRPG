@@ -6,174 +6,134 @@ using System.Threading.Tasks;
 
 namespace RPGAdventure
 {
-    public class Skelebone
+    public class Skelebone : Enemy
     {
-        static Random rand = new Random();
-        public static void EnemySkelebone()
+        public Skelebone()
         {
-            SkeleboneBattle("Skelebone", 2, 5);
-
+            this.Health = 5;
+            this.Power = 2;
+            this.Name = "Skelebone";
+            this.InitialStatement =
+                @"
+                             ____________   
+                            |            | 
+                            |            |
+                        ____|____________|____
+                           |,  .-.  .-.  ,|
+                      ()   | )(__|  |__)( |
+                    _ ()   |[     ()     ]|
+                     ()    (_     ^^     _)   .-==(~)
+                  ___/_,__,_(__|IIIIII|__)__)/   /{~}}
+                  ---,---,---|-|IIIIII|-|---,\'-' {{~}
+                              |        |      '-==(}/
+                               '------'
+                        'A rose for you? *wink*'
+                    ===============================
+                 ";
         }
 
-        public static void SkeleboneBattle(string name, int power, int health)
+        public override void Attack()
         {
-            string n = "Skelebone";
-            int p = 2;
-            int h = 5;
+            Console.WriteLine("You smack " + this.Name + " with your torch." + this.Name + " seems to like it...");
+            Console.WriteLine("You blush, " + this.Name + " offers you a rose!");
 
-            n = name;
-            p = power;
-            h = health;
+            int damage = this.Power - Program.currentPlayer.armorValue;
+            if (damage < 0)
+                damage = 0;
 
-            while (h > 0)
-            {
-                Console.WriteLine(n);
-                Console.WriteLine("Power: " + p);
-                Console.WriteLine("Health: " + h);
-                Console.WriteLine("           ____________   ");
-                Console.WriteLine("          |            | ");
-                Console.WriteLine("          |            |");
-                Console.WriteLine("      ____|____________|____");
-                Console.WriteLine("         |,  .-.  .-.  ,|");
-                Console.WriteLine("    ()   | )(__|  |__)( |");
-                Console.WriteLine("  _ ()   |[     ()     ]|");
-                Console.WriteLine("   ()    (_     ^^     _)   .-==(~)");
-                Console.WriteLine("___/_,__,_(__|IIIIII|__)__)/   /{~}}");
-                Console.WriteLine("---,---,---|-|IIIIII|-|---,\'-' {{~}");
-                Console.WriteLine("            |        |      '-==(}/");
-                Console.WriteLine("             '------'");
-                Console.WriteLine("     'A rose for you? *wink*' ");
-                Console.WriteLine("===============================");
-                Console.WriteLine("");
-                Console.WriteLine("========================");
-                Console.WriteLine("~ (A)ttack    (S)peak  ~");
-                Console.WriteLine("~ (D)efend    (F)lee   ~");
-                Console.WriteLine("~        (H)eal        ~");
-                Console.WriteLine("========================");
-                Console.WriteLine("Potions: " + Program.currentPlayer.potion + " Health: " + Program.currentPlayer.health);
-                string input = Console.ReadLine();
+            int attack = rand.Next(0, Program.currentPlayer.weaponValue) + rand.Next(1, 4);
 
-                if (input.ToLower() == "a" || input.ToLower() == "attack")
-                {
-                    //attack
-                    Console.WriteLine("You smack " + n + " with your torch." + n + " seems to like it...");
-                    Console.WriteLine("You blush, " + n + " offers you a rose!");
+            Console.WriteLine("You lose " + damage + " health and deal " + attack + " damage.");
 
-                    int damage = p - Program.currentPlayer.armorValue;
-                    if (damage < 0)
-                        damage = 0;
+            Program.currentPlayer.health -= damage;
+            this.Health -= attack;
 
-                    int attack = rand.Next(0, Program.currentPlayer.weaponValue) + rand.Next(1, 4);
-
-                    Console.WriteLine("You lose " + damage + " health and deal " + attack + " damage.");
-
-                    Program.currentPlayer.health -= damage;
-                    h -= attack;
-
-                    Console.ReadKey();
-                    Console.Clear();
-                }
-                else if (input.ToLower() == "s" || input.ToLower() == "speak")
-                {
-                    //speak
-                    Console.WriteLine("You attempt to gain information from " + n + " but " + n + " doesn't want to chat.");
-                    Console.ReadKey();
-                    Console.Clear();
-                }
-                else if (input.ToLower() == "d" || input.ToLower() == "defend")
-                {
-                    int damage = (p / 4) - Program.currentPlayer.armorValue;
-                    if (damage < 0)
-                        damage = 0;
-
-                    int attack = rand.Next(0, Program.currentPlayer.weaponValue) / 2;
-
-                    Console.WriteLine("You brace for a thorny attack from " + n + " but " + n + " tips it's hat with a wink.");
-                    Console.WriteLine("'Muh'Lady ;)'");
-                    Console.ReadKey();
-                    Console.WriteLine("You lose " + damage + " health from charm alone and deal " + attack + " damage out of spite.");
-
-                    Program.currentPlayer.health -= damage;
-                    h -= attack;
-                    Console.ReadKey();
-                    Console.Clear();
-                }
-                else if(input.ToLower() == "f" || input.ToLower() == "flee")
-                {
-                    //flee
-                    if (rand.Next(0, 2) == 0)
-                    {
-                        Console.WriteLine("You attempt to flee... but it looks like " + n + " has a strong gaze upon you.");
-                        Console.WriteLine("I don't think you are going anywhere...");
-                        int damage = p - Program.currentPlayer.armorValue;
-
-                        if (damage < 0)
-                            damage = 0;
-
-                        Console.WriteLine("You lose " + damage + " health, and are unable to escape.");
-                        Console.ReadKey();
-                    }
-                    else
-                    {
-                        Console.WriteLine("You use your charm and wit to distract the " + n + " as you slink away to safety.");
-                        Console.ReadKey();
-                        new Town().Load(Program.currentPlayer);
-                        // CALL GO TO TOWN, FROM TOWN CAN ENTER STORE, CREATE CLASS FOR TOWN
-                    }
-                }
-                else if (input.ToLower() == "h" || input.ToLower() == "heal")
-                {
-                    //heal
-                    if (Program.currentPlayer.potion == 0)
-                    {
-                        Console.WriteLine("You frantically search your pockets...");
-                        Console.WriteLine("...pocket lint...");
-                        int damage = p - Program.currentPlayer.armorValue;
-                        if (damage < 0)
-                            damage = 0;
-
-                        Console.WriteLine("You take " + damage + "and " + n + "wriggles around excitedly.");
-
-                        Console.ReadKey();
-                        Console.Clear();
-                    }
-                    else
-                    {
-                        Console.WriteLine("You frantically search your pockets...");
-                        Console.WriteLine("A giant red vial you pull from your pocket.");
-                        Console.WriteLine("How did that fit in there?\nYou drink the vial.");
-                        int potionValue = 5;
-                        Console.WriteLine("You gain " + potionValue + " health and get the jitters.");
-                        Program.currentPlayer.health += potionValue;
-                        Program.currentPlayer.potion -= 1;
-                        Console.WriteLine("You had your back turned searching your pockets...");
-                        Console.WriteLine(n + " strikes you in the rear. You blush...");
-                        int damage = (p / 2) - Program.currentPlayer.armorValue;
-                        if (damage < 0)
-                            damage = 0;
-                        Console.WriteLine("You lose " + damage + " health.");
-                    }
-                    Console.ReadKey();
-                    Console.Clear();
-                }
-                if (Program.currentPlayer.health <= 0)
-                {
-                    //Death Code
-                    Console.WriteLine("The " + n + " has killed you... Don't give up now" + Program.currentPlayer.name + "!");
-                    Console.ReadKey();
-                    System.Environment.Exit(0);
-                }
-                Console.ReadKey();
-            }
-
-            int c = Program.currentPlayer.GetCoins();
-            Console.WriteLine("You killed " + n + " and received " + c + " gold.");
-            Console.ReadKey();
-            Console.WriteLine("Don't spend it all in one place.");
-            Program.currentPlayer.gold += c;
             Console.ReadKey();
             Console.Clear();
         }
-        
+
+        public override void Defend()
+        {
+            int damage = (this.Power / 4) - Program.currentPlayer.armorValue;
+            if (damage < 0)
+                damage = 0;
+
+            int attack = rand.Next(0, Program.currentPlayer.weaponValue) / 2;
+
+            Console.WriteLine("You brace for a thorny attack from " + this.Name + " but " + this.Name + " tips it's hat with a wink.");
+            Console.WriteLine("'Muh'Lady ;)'");
+            Console.ReadKey();
+            Console.WriteLine("You lose " + damage + " health from charm alone and deal " + attack + " damage out of spite.");
+
+            Program.currentPlayer.health -= damage;
+            this.Health -= attack;
+            Console.ReadKey();
+            Console.Clear();
+        }
+
+        public override void Speak()
+        {
+            Console.WriteLine("You attempt to gain information from " + this.Name + " but " + this.Name + " doesn't want to chat.");
+            Console.ReadKey();
+            Console.Clear();
+        }
+
+        public override void Flee()
+        {
+            //flee
+            if (rand.Next(0, 2) == 0)
+            {
+                Console.WriteLine("You attempt to flee... but it looks like " + this.Name + " has a strong gaze upon you.");
+                Console.WriteLine("I don't think you are going anywhere...");
+                int damage = this.Power - Program.currentPlayer.armorValue;
+
+                if (damage < 0)
+                    damage = 0;
+
+                Console.WriteLine("You lose " + damage + " health, and are unable to escape.");
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.WriteLine("You use your charm and wit to distract " + this.Name + " as you slink away to safety.");
+                Console.ReadKey();
+                new Town().Load(Program.currentPlayer);
+                // CALL GO TO TOWN, FROM TOWN CAN ENTER STORE, CREATE CLASS FOR TOWN
+            }
+        }
+        public override void Heal()
+        {
+            //heal
+            if (Program.currentPlayer.potion == 0)
+            {
+                Console.WriteLine("You frantically search your pockets...");
+                Console.WriteLine("...pocket lint...");
+                int damage = this.Power - Program.currentPlayer.armorValue;
+                if (damage < 0)
+                    damage = 0;
+
+                Console.WriteLine("You take " + damage + "and " + this.Name + "wriggles around excitedly.");
+
+                Console.ReadKey();
+                Console.Clear();
+            }
+            else
+            {
+                Console.WriteLine("You frantically search your pockets...");
+                Console.WriteLine("A giant red vial you pull from your pocket.");
+                Console.WriteLine("How did that fit in there?\nYou drink the vial.");
+                int potionValue = 5;
+                Console.WriteLine("You gain " + potionValue + " health and get the jitters.");
+                Program.currentPlayer.health += potionValue;
+                Program.currentPlayer.potion -= 1;
+                Console.WriteLine("You had your back turned searching your pockets...");
+                Console.WriteLine(this.Name + " strikes you in the rear. You blush...");
+                int damage = (this.Power / 2) - Program.currentPlayer.armorValue;
+                if (damage < 0)
+                    damage = 0;
+                Console.WriteLine("You lose " + damage + " health.");
+            }
+        }
     }
 }
+        
