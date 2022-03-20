@@ -15,13 +15,13 @@ namespace RPGAdventure
 
         static void Main(string[] args)
         {
+            var mon = new Skelebone();
+            mon.Menu();
             if (!Directory.Exists("saves"))
             {
                 Directory.CreateDirectory("saves");
             }
-            new Town();
             Story.Start();
-            Skelebone.EnemySkelebone();
             Story.MayorEncounter();
             Story.TownGreeting();
             Story.JudeGreeting();
