@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace RPGAdventure
 {
-    public class Shop
+    public class Shop : Place
     {
-        public static void LoadShop(Player p)
+        public void Load(Player p)
         {
-            RunShop(p);
+            Run(p);
         }
 
-        public static void RunShop(Player p)
+        public void Run(Player p)
         {
             int potionPrice;
             int armorPrice;

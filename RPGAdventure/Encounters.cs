@@ -119,7 +119,7 @@ namespace RPGAdventure
                     {
                         Console.WriteLine("You use your charm and wit to distract the " + n + " as you slink away to safety.");
                         Console.ReadKey();
-                        Town.LoadTown(Program.currentPlayer);
+                        new Town().Load(Program.currentPlayer);
                         // CALL GO TO TOWN, FROM TOWN CAN ENTER STORE, CREATE CLASS FOR TOWN
                     }
                 }

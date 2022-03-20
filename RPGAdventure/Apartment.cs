@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Runtime;
 
 namespace RPGAdventure
 {
-    public class Apartment
+    public class Apartment : Place
     {
 
-        public static void LoadBedroom(Player p)
+        public void Load(Player p)
         {
-            RunBedroom(p);
+            Run(p);
         }
-        public static string RunBedroom(Player p)
+        public void Run(Player p)
         {
             Console.WriteLine("  ()___                                .-===-.  ");
             Console.WriteLine("()//__/)_________________()            | . . |  ");
@@ -23,22 +25,27 @@ namespace RPGAdventure
             Console.WriteLine("||    |#|_|#|_|#|_|#|_||               W     W  ");
             Console.WriteLine("========= (B)ed ========          ==== (C)hair ====    >>> (L)iving room? >>>");
 
+        }  
+         
+        public string RandomUserInput()
+        {
             string input = Console.ReadLine();
-
-            if(input.ToLower() == "b" || input.ToLower() == "bed")
+            if (input.ToLower() == "b" || input.ToLower() == "bed")
             {
-                // Create save file location for player to save
+                //Create Save File Location for player
+                Program.Save();
+                return "TODO: We should definitely save the game now.";
             }
-            else if(input.ToLower() == "c" || input.ToLower() == "chair")
+            else if (input.ToLower() == "c" || input.ToLower() == "chair")
             {
-                Random Rand0 = new Random();
-                int saying0 = Rand0.Next(1, 4);
+                Random Rand = new Random();
+                var saying = Rand.Next(1, 4);
 
-                switch(saying0)
+                switch(saying)
                 {
                     case 1:
                         return "Ah.. feels good to sit for a while, huh?";
-                        
+
                     case 2:
                         return "Someone cut the cheese... You blame the chair.";
 
@@ -47,13 +54,16 @@ namespace RPGAdventure
 
                     case 4:
                         return "There are claw marks on the chair... You don't own a cat.";
+
                     default:
                         return "You found a raisin in the seat... how lucky!";
                 }
-             
+            }
+            else
+            {
+                return "TODO: We should probably save the game now!";
             }
         }
-         
         public static void LoadLivingRoom(Player p)
             {
                 RunLivingRoom(p);
