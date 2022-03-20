@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPGAdventure
 {
-    class Ratbus
+    class Ratbus : Enemy
     {
         static Random rand = new Random();
         public static void EnemyRatbus()
@@ -148,7 +148,7 @@ namespace RPGAdventure
                     {
                         Console.WriteLine($"You use a ball of Mozzorella to distract {n} as you slink away to safety.");
                         Console.ReadKey();
-                        Town.LoadTown(Program.currentPlayer);
+                        new Town().Load(Program.currentPlayer);
                         // CALL GO TO TOWN, FROM TOWN CAN ENTER STORE, CREATE CLASS FOR TOWN
                     }
                 }

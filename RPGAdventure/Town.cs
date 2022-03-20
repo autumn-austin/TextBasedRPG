@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace RPGAdventure
 {
-    public class Town
+    public class Town : Place
     {
-        public static void LoadTown(Player p)
+        public void Load(Player p)
         {
-            RunTown(p);
+            Run(p);
         }
 
-        public static void RunTown(Player p)
+        public void Run(Player p)
         {
 
             Console.Clear();
@@ -42,7 +42,7 @@ namespace RPGAdventure
             string input = Console.ReadLine().ToLower();
             if (input == "s" || input == "shop")
             {
-                Shop.LoadShop(Program.currentPlayer);
+                new Shop().Load(Program.currentPlayer);
             }
             else if (input == "t" || input == "town hall")
             {
@@ -50,7 +50,7 @@ namespace RPGAdventure
             }
             else if (input == "h" || input == "home")
             {
-                Apartment.LoadBedroom(Program.currentPlayer);
+                new Apartment().Load(Program.currentPlayer);
             }
             else if (input == "f" || input == "forest")
             {
