@@ -24,7 +24,7 @@ namespace RPGAdventure
             Console.WriteLine("||____|_|#|_|#|_|#|_|#||/||           ||_____|| ");
             Console.WriteLine("||    |#|_|#|_|#|_|#|_||               W     W  ");
             Console.WriteLine("========= (B)ed ========          ==== (C)hair ====    >>> (L)iving room? >>>");
-
+            RandomUserInput();
         }  
          
         public string RandomUserInput()
@@ -32,51 +32,44 @@ namespace RPGAdventure
             string input = Console.ReadLine();
             if (input.ToLower() == "b" || input.ToLower() == "bed")
             {
-                //Create Save File Location for player
-                Program.Save();
-                return "TODO: We should definitely save the game now.";
+                Program.SaveGame();
+                Console.ReadKey();
+                Console.Clear();
+                new Apartment().Load(Program.currentPlayer);
+
+                return "Time to Save!";
             }
             else if (input.ToLower() == "c" || input.ToLower() == "chair")
             {
-                Random Rand = new Random();
-                var saying = Rand.Next(1, 4);
-
-                switch(saying)
+                while (input.ToLower() == "c" || input.ToLower() == "chair")
                 {
-                    case 1:
-                        return "Ah.. feels good to sit for a while, huh?";
+                    Random Rand = new Random();
+                    var saying = Rand.Next(0, 2);
 
-                    case 2:
-                        return "Someone cut the cheese... You blame the chair.";
+                    switch (saying)
+                    {
+                        case 0:
+                            Console.WriteLine("Feels nice to relax.");
+                            break;
 
-                    case 3:
-                        return "GET YOUR FEET OFF THE COFFEE TABLE! HEATHEN!";
-
-                    case 4:
-                        return "There are claw marks on the chair... You don't own a cat.";
-
-                    default:
-                        return "You found a raisin in the seat... how lucky!";
+                        case 1:
+                            Console.WriteLine("Feels nice to relax.");
+                            break;
+                        case 2:
+                            Console.WriteLine("Feels nice to relax.");
+                            break;
+                    }
                 }
+                
             }
-            else
+            else if (input.ToLower() == "l" || input.ToLower() == "living room")
             {
-                return "TODO: We should probably save the game now!";
+                new LivingRoom().Load(Program.currentPlayer);
             }
+
+            return "You should probably save your game here.";
+
         }
-        public static void LoadLivingRoom(Player p)
-            {
-                RunLivingRoom(p);
-            }
-        public static void RunLivingRoom(Player p)
-        {
-            Console.WriteLine(" ____________________   ");
-            Console.WriteLine("|  o  | ,----------, |  ");
-            Console.WriteLine("|_____| |_===___O__| |  ");
-            Console.WriteLine("|  o  | | ... ### .| |  ");
-            Console.WriteLine("|_____|_|_O__ooo___|_|  ");
-            Console.WriteLine(" (_)              (_)   ");
-            Console.WriteLine(" === (M)usic Player ===   >>> (B)edroom? >>>");
-        }
+       
     }
 }

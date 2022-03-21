@@ -17,15 +17,23 @@ namespace RPGAdventure
 
         public void Menu()
         {
-            Console.WriteLine(Name);
-            Console.WriteLine("Power: " + this.Power);
-            Console.WriteLine("Health: " + this.Health);
-            Console.WriteLine(this.InitialStatement);
-            ActOnAction();
+            do
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.Clear();
+                Console.WriteLine(Name);
+                Console.WriteLine("Power: " + this.Power);
+                Console.WriteLine("Health: " + this.Health);
+                Console.WriteLine(this.InitialStatement);
+                ActOnAction();
+            }
+            while (Health >= 1);
+
         }
 
         public void ActOnAction()
         {
+            
             Console.WriteLine("========================");
             Console.WriteLine("~ (A)ttack    (S)peak  ~");
             Console.WriteLine("~ (D)efend    (F)lee   ~");
@@ -34,34 +42,34 @@ namespace RPGAdventure
             Console.WriteLine("Potions: " + Program.currentPlayer.potion + " Health: " + Program.currentPlayer.health);
             var response = Console.ReadLine();
 
-            switch (response.ToLower())
-            {
-                case "a": 
-                case "attack":
-                    Attack();
-                    break;
+            
+                switch (response.ToLower())
+                {
+                    case "a":
+                    case "attack":
+                        Attack();
+                        break;
 
-                case "d":
-                case "defend":
-                    Defend();
-                    break;
+                    case "d":
+                    case "defend":
+                        Defend();
+                        break;
 
-                case "s":
-                case "speak":
-                    Speak();
-                    break;
+                    case "s":
+                    case "speak":
+                        Speak();
+                        break;
 
-                case "f":
-                case "flee":
-                    Flee();
-                    break;
+                    case "f":
+                    case "flee":
+                        Flee();
+                        break;
 
-                case "h":
-                case "heal":
-                    Heal();
-                    break;
-            }
-
+                    case "h":
+                    case "heal":
+                        Heal();
+                        break;
+                }
 
             if (Program.currentPlayer.health <= 0)
             {
@@ -71,13 +79,17 @@ namespace RPGAdventure
             }
             Console.ReadKey();
 
-            int c = Program.currentPlayer.GetCoins();
-            Console.WriteLine("You killed " + this.Name + " and received " + c + " gold.");
-            Console.ReadKey();
-            Console.WriteLine("Don't spend it all in one place.");
-            Program.currentPlayer.gold += c;
-            Console.ReadKey();
-            Console.Clear();
+            if (Health <= 0)
+            {
+                int c = Program.currentPlayer.GetCoins();
+                Console.WriteLine("You killed " + this.Name + " and received " + c + " gold.");
+                Console.ReadKey();
+                Console.WriteLine("Don't spend it all in one place.");
+                Program.currentPlayer.gold += c;
+                Console.ReadKey();
+                Console.Clear();
+            }
+            
         }
         public abstract void Attack();
 

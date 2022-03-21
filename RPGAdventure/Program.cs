@@ -1,9 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Collections.Generic;
 
 namespace RPGAdventure
@@ -15,30 +12,33 @@ namespace RPGAdventure
 
         static void Main(string[] args)
         {
-            var mon = new Skelebone();
-            mon.Menu();
             if (!Directory.Exists("saves"))
             {
                 Directory.CreateDirectory("saves");
             }
             Story.Start();
+            new Apartment().Load(Program.currentPlayer);
+            Console.ReadKey();
+            var mon = new Ratbus();
+            mon.Menu();
             Story.MayorEncounter();
             Story.TownGreeting();
             Story.JudeGreeting();
             
         }
 
-        public static void Save()
+        public static void SaveGame()
         {
-#pragma warning disable
-            BinaryFormatter binform = new BinaryFormatter();
-            string path = "saves/" + currentPlayer.saveID.ToString();
-            FileStream file = File.Open(path, FileMode.OpenOrCreate);
-            binform.Serialize(file, currentPlayer);
-            file.Close();
+            Player p = new Player();
+            p.name = Program.currentPlayer.name;
+            System.Xml.Serialization.XmlSerializer x = new System.Xml.Serialization.XmlSerializer(p.GetType());
+            x.Serialize(Console.Out, p);
+            Console.WriteLine("");
+            Console.WriteLine("Game saved!");
+
         }
 
-        public static Player Load()
+        public static Player LoadGame()
         {
             Console.Clear();
             Console.WriteLine("Choose Save: ");

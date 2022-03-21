@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace RPGAdventure
 {
-    [Serializable]
     public class Player
     {
         Random rand = new Random();
