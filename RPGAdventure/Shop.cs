@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace RPGAdventure
 {
-    public class Shop
+    public class Shop : Place
     {
-        public static void LoadShop(Player p)
+        public void Load(Player p)
         {
-            RunShop(p);
+            Run(p);
         }
 
-        public static void RunShop(Player p)
+        public void Run(Player p)
         {
             int potionPrice;
             int armorPrice;
@@ -22,10 +22,10 @@ namespace RPGAdventure
 
             while(true)
             {
-                potionPrice = 5 + 10 * p.mods;
-                armorPrice = 25 * p.armorValue;
-                weaponPrice = 20 * (p.weaponValue + 1);
-                difmodPrice = 300 + 100 * p.mods;
+                potionPrice = 5 + 10 * Program.currentPlayer.mods;
+                armorPrice = 25 * (Program.currentPlayer.armorValue + 1);
+                weaponPrice = 20 * Program.currentPlayer.weaponValue;
+                difmodPrice = 300 + 100 * Program.currentPlayer.mods;
 
                 Console.Clear();
                 Console.WriteLine("          SHOP          ");
@@ -35,43 +35,48 @@ namespace RPGAdventure
                 Console.WriteLine("=(W)eapon : $" + weaponPrice);
                 Console.WriteLine("=(D)ifficulty : $" + difmodPrice);
                 Console.WriteLine("========================");
+                Console.WriteLine("          (E)xit        ");
+
                 Console.WriteLine("");
                 Console.WriteLine("");
                 Console.WriteLine("      Player Stats      ");
                 Console.WriteLine("========================");
-                Console.WriteLine("Potion Inventory: " + p.potion);
-                Console.WriteLine("Weapon Level: " + p.weaponValue);
-                Console.WriteLine("Armor Level: " + p.armorValue);
-                Console.WriteLine("Gold Amount: " + p.gold);
-                Console.WriteLine("Health Level: " + p.health);
+                Console.WriteLine("Gold: " + Program.currentPlayer.potion);
+                Console.WriteLine("Potion Inventory: " + Program.currentPlayer.potion);
+                Console.WriteLine("Weapon Level: " + Program.currentPlayer.weaponValue);
+                Console.WriteLine("Armor Level: " + Program.currentPlayer.armorValue);
+                Console.WriteLine("Gold Amount: " + Program.currentPlayer.gold);
+                Console.WriteLine("Health Level: " + Program.currentPlayer.health);
                 Console.WriteLine("========================");
 
 
                 string input = Console.ReadLine().ToLower();
-                if(input == "p" || input == "potion")
+                if (input == "p" || input == "potion")
                 {
-                    TryBuy("potion", potionPrice, p);
+                    TryBuy("potion", potionPrice, Program.currentPlayer);
                 }
                 else if (input == "a" || input == "armor")
                 {
-                    TryBuy("armor", armorPrice, p);
+                    TryBuy("armor", armorPrice, Program.currentPlayer);
 
                 }
                 else if (input == "w" || input == "weapon")
                 {
-                    TryBuy("weapon", weaponPrice, p);
+                    TryBuy("weapon", weaponPrice, Program.currentPlayer);
 
                 }
                 else if (input == "d" || input == "difficulty")
                 {
-                    TryBuy("difficulty", difmodPrice, p);
+                    TryBuy("difficulty", difmodPrice, Program.currentPlayer);
 
                 }
+                else if (input == "e" || input == "exit")
+                    break;
             }
         }
         static void TryBuy(string item, int cost, Player p)
         {
-            if(p.gold >= cost)
+            if(Program.currentPlayer.gold >= cost)
             {
                 if (item == "potion")
                     p.potion++;
