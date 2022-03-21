@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
 
 namespace RPGAdventure
@@ -38,64 +37,10 @@ namespace RPGAdventure
 
         }
 
-        public static Player LoadGame()
+        public static void LoadGame()
         {
-            Console.Clear();
-            Console.WriteLine("Choose Save: ");
-            string[] paths = Directory.GetDirectories("saves");
-            List<Player> players = new List<Player>();
-
-            BinaryFormatter binform = new BinaryFormatter();
-            foreach (string p in paths)
-            {
-                FileStream file = File.Open(p, FileMode.Open);
-                Player player = (Player)binform.Deserialize(file);
-                file.Close();
-                players.Add(player);
-
-            }
-
-            while(true)
-            {
-                Console.Clear();
-                Console.WriteLine("Please input player name or ID: ");
-
-                foreach (Player p in players)
-                {
-                    Console.WriteLine($"{ p.saveID} : {p.name} : {p.gold}");
-                }
-                string[] data = Console.ReadLine().Split(':');
-
-                try
-                {
-                    if(data[0] == "id")
-                    {
-                        if(int.TryParse(data[1],out int id))
-                        {
-                            foreach (Player player in players)
-                            {
-                                if(player.saveID == id)
-                                {
-                                    return player;
-                                }
-                            }
-                            Console.WriteLine("Player ID not recognized. Press any key to continue.");
-                            Console.ReadKey();
-                        }
-                        else
-                        {
-                            Console.WriteLine("Player ID not recognized. Press any key to continue.");
-                            Console.ReadKey();
-                        }
-                    }
-                }
-                catch(IndexOutOfRangeException)
-                {
-                    Console.WriteLine("Player ID not recognized. Press any key to continue.");
-                    Console.ReadKey();
-                }
-            }
-
+            //create load file to load from screen if save file exists
+            Console.WriteLine("");
         }
     }
 }
