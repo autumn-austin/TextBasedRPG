@@ -10,25 +10,24 @@ namespace RPGAdventure
     {
         public Skelebone()
         {
-            this.Health = 5;
+            this.Health = 10;
             this.Power = 2;
             this.Name = "Skelebone";
             this.InitialStatement =
                 @"
-                             ____________   
-                            |            | 
-                            |            |
-                        ____|____________|____
-                           |,  .-.  .-.  ,|
-                      ()   | )(__|  |__)( |
-                    _ ()   |[     ()     ]|
-                     ()    (_     ^^     _)   .-==(~)
-                  ___/_,__,_(__|IIIIII|__)__)/   /{~}}
-                  ---,---,---|-|IIIIII|-|---,\'-' {{~}
-                              |        |      '-==(}/
-                               '------'
-                        'A rose for you? *wink*'
-                    ===============================
+                        ____________   
+                       |            | 
+                       |            |
+                   ____|____________|____
+                      |,  .-.  .-.  ,|
+                 ()   | )(__|  |__)( |
+               _ ()   |[     ()     ]|
+                ()    (_     ^^     _)   .-==(~)
+             ___/_,__,_(__|IIIIII|__)__)/   /{~}}
+             ---,---,---|-|IIIIII|-|---,\'-' {{~}
+                         |        |      '-==(}/
+                          '------'
+                   'A rose for you? *wink*'
                  ";
         }
 
@@ -92,6 +91,7 @@ namespace RPGAdventure
 
                 Console.WriteLine("You lose " + damage + " health, and are unable to escape.");
                 Console.ReadKey();
+                Console.Clear();
             }
             else
             {
@@ -133,6 +133,9 @@ namespace RPGAdventure
                     damage = 0;
                 Console.WriteLine("You lose " + damage + " health.");
             }
+
+            Console.ReadKey();
+            Console.Clear();
         }
     }
 }
