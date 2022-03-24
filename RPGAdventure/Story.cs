@@ -20,6 +20,8 @@ namespace RPGAdventure
             Console.WriteLine("|o o o|* * *  |::  |. .| []  []  []  []|o| # # #  |. . | o o o o | (((|)))");
             Console.WriteLine("|o o o|**  ** |:  :|. .| []  []  []    |o| # # #  |. . | o o o o |((((|))))");
             Console.WriteLine("|_[]__|__[]___|_||_|__<|____________;;_|_|___[]___|_.|_|____[]___|    |");
+            Console.WriteLine("");
+            Console.WriteLine("(L)oad Game?");
             Console.ReadKey();
             Console.Clear();
 

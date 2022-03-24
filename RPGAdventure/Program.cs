@@ -1,20 +1,20 @@
 ﻿using System;
-using System.IO;
 using System.Collections.Generic;
+using System.Xml;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace RPGAdventure
 {
     public class Program
     {
         public static Player currentPlayer = new Player();
+
         public static bool mainLoop = true;
 
         static void Main(string[] args)
         {
-            if (!Directory.Exists("saves"))
-            {
-                Directory.CreateDirectory("saves");
-            }
+            
             Story.Start();
             new Apartment().Load(Program.currentPlayer);
             Console.ReadKey();
@@ -28,19 +28,36 @@ namespace RPGAdventure
 
         public static void SaveGame()
         {
-            Player p = new Player();
-            p.name = Program.currentPlayer.name;
-            System.Xml.Serialization.XmlSerializer x = new System.Xml.Serialization.XmlSerializer(p.GetType());
-            x.Serialize(Console.Out, p);
-            Console.WriteLine("");
-            Console.WriteLine("Game saved!");
+            Console.WriteLine("Press any key to save game data.");
+            Console.ReadKey();
+            static void Serialize(Object file, String path, Type type)
+            {
+                // Create a new serializer
+                XmlSerializer serializer = new XmlSerializer(type);
+                //Create new StreamWriter
+                TextWriter writer = new StreamWriter(path);
+                //Serialize to file
+                serializer.Serialize(writer, file);
+                //Close writer
+                writer.Close();
+
+            }
 
         }
 
-        public static void LoadGame()
+        public static object LoadGame(String path, Type type)
         {
-            //create load file to load from screen if save file exists
-            Console.WriteLine("");
+            //Create new serializer
+            XmlSerializer serializer = new XmlSerializer(type);
+            //create streamreader
+            TextReader reader = new StreamReader(path);
+            //Deserialize the file
+            Object file;
+            file = (Object)serializer.Deserialize(reader);
+            //close reader
+            reader.Close();
+            //return the object
+            return file;
         }
     }
 }
