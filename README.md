@@ -12,14 +12,15 @@ To navigate the story, you may press ENTER to run through dialogue.
 
 To navigate enemy encounters, you will press the first letter of the attributed action. (A for "ATTACK", D for "DEFEND", F for "FLEE", etc.)
 
-To navigate the town, and your apartment, you will also press the first letter of the attributed action (or place);
+To navigate the town, and your apartment, you will also press the first letter of the attributed action (or place)
+
 -H for "HOME"
 -T for "TOWN HALL"
 -F for "FOREST"
 -E for "EXIT"
 -S for "SHOP"
 
-(Please note, this is a demo and not all attributes in the town square have written functionality, currently the shop and home are the only resting places you may go)
+(Please note, this is a demo and not all attributes in the town square have written functionality, currently the shop and home are the only resting places you may go, the town will soon have a community board for quests, currently the forest is a randomized enemy encounter ONLY, you may fight till the death!)
 
 You may also choose to exit the game to the main menu from your home, in which you will return to the main menu. From the main menu, you may exit the program entirely. 
 
