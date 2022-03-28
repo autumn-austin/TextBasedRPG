@@ -10,19 +10,20 @@ namespace RPGAdventure
     {
         public Ratbus()
         {
+            Console.Clear();
             this.Health = 6;
             this.Power = 2;
             this.Name = "Ratbus";
             this.InitialStatement =
                 @"
-                        ,,==.
-                       //    `
-                      ||      ,--~~~~-._ _(|--,_
-                       \\._,-~   )      '    *  `o
-                        `---~|( _/,___( /_/`---~~
-                              ``==-    `==-,
-                            *shakes violently* 
-                 ";
+ ,,==.
+//    `
+||      ,--~~~~-._ _(|--,_
+ \\._,-~   )      '    *  `o
+  `---~|( _/,___( /_/`---~~''
+        ``==-    `==-,
+     *shakes violently*
+===============================";
         }
 
         public override void Attack()
@@ -40,9 +41,6 @@ namespace RPGAdventure
 
             Program.currentPlayer.health -= damage;
             this.Health -= attack;
-
-            Console.ReadKey();
-            Console.Clear();
         }
 
         public override void Defend()
@@ -53,14 +51,12 @@ namespace RPGAdventure
 
             int attack = rand.Next(0, Program.currentPlayer.weaponValue) / 2;
 
-            Console.WriteLine($"{this.Name} offers you cheese... There is a large mouse trap attached...");
+            Console.WriteLine($"{this.Name} offers you cheese... It's sitting on top of a large mouse trap...");
             Console.ReadKey();
             Console.WriteLine($"You lose {damage} health from your lactose allergy and deal {attack} damage to {this.Name}.");
 
             Program.currentPlayer.health -= damage;
             this.Health -= attack;
-            Console.ReadKey();
-            Console.Clear();
         }
         public override void Speak()
         {
@@ -68,8 +64,6 @@ namespace RPGAdventure
             Console.WriteLine("You attempt to gain information from " + this.Name + " but " + this.Name + " offers you a bite of cheese...");
             Console.ReadKey();
             Console.WriteLine("You do love sharp cheddar.");
-            Console.ReadKey();
-            Console.Clear();
         }
         public override void Flee()
         {
@@ -84,7 +78,6 @@ namespace RPGAdventure
                     damage = 0;
 
                 Console.WriteLine($"You lose {damage} health, and are unable to escape.");
-                Console.ReadKey();
             }
             else
             {
@@ -106,10 +99,8 @@ namespace RPGAdventure
                 if (damage < 0)
                     damage = 0;
 
-                Console.WriteLine($"You take {damage} and {this.Name} wriggles around excitedly.");
+                Console.WriteLine($"You take {damage} damage and {this.Name} wriggles around excitedly.");
 
-                Console.ReadKey();
-                Console.Clear();
             }
 
             else
@@ -128,8 +119,6 @@ namespace RPGAdventure
                     damage = 0;
                 Console.WriteLine($"You lose {damage} health.");
             }
-            Console.ReadKey();
-            Console.Clear();
         }
     }
         

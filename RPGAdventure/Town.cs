@@ -27,7 +27,7 @@ namespace RPGAdventure
             Console.WriteLine("|o o o|**  ** |:  :|. .| []  []  []    |o| # # #  |. . | o o o o |((((|))))");
             Console.WriteLine("|_[]__|__[]___|_||_|__<|____________;;_|_|___[]___|_.|_|____[]___|    |");
             Console.WriteLine("(S)hop                    (T)own Hall                    (H)ome    (F)orest");
-            Console.WriteLine("");
+            Console.WriteLine("                            (E)xit");
             Console.WriteLine("");
             Console.WriteLine("      Player Stats      ");
             Console.WriteLine("========================");
@@ -54,11 +54,11 @@ namespace RPGAdventure
             }
             else if (input == "f" || input == "forest")
             {
-
+                Forest.RandomEnemy();
             }
             else if (input == "e" || input == "exit")
             {
-                Encounters.RandomEncounter();
+                MainMenu.Opening();
             }
         }
     }

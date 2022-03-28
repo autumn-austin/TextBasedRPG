@@ -14,6 +14,7 @@ namespace RPGAdventure
         }
         public void Run(Player p)
         {
+            Console.Clear();
             Console.WriteLine(" ____________________   ");
             Console.WriteLine("|  o  | ,----------, |  ");
             Console.WriteLine("|_____| |_===___O__| |  ");
@@ -30,6 +31,7 @@ namespace RPGAdventure
             }
             else if (input.ToLower() == "b" || input.ToLower() == "bedroom")
             {
+                Console.Clear();
                 new Apartment().Load(Program.currentPlayer);
             }
         }

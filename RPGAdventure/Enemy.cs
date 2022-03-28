@@ -26,6 +26,7 @@ namespace RPGAdventure
                 Console.WriteLine("Health: " + this.Health);
                 Console.WriteLine(this.InitialStatement);
                 ActOnAction();
+                Console.ResetColor();
             }
             while (Health >= 1);
 
@@ -75,7 +76,7 @@ namespace RPGAdventure
             {
                 Console.WriteLine($"The {this.Name} has killed you... Don't give up now {Program.currentPlayer.name}!");
                 Console.ReadKey();
-                System.Environment.Exit(0);
+                MainMenu.Opening();
             }
             Console.ReadKey();
 
