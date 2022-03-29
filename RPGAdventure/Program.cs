@@ -12,7 +12,6 @@ namespace RPGAdventure
 
         static void Main(string[] args)
         {
-            new Forest().Load(Program.currentPlayer);
             MainMenu.Opening();
             var mon = new Ratbus();
             mon.Menu();
