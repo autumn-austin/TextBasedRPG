@@ -91,6 +91,7 @@ namespace RPGAdventure
             {
                 Console.WriteLine($"You distract {this.Name} with a new silk sheet as you slink away to safety.");
                 Console.ReadKey();
+                Console.ResetColor();
                 new Town().Load(Program.currentPlayer);
                 // CALL GO TO TOWN, FROM TOWN CAN ENTER STORE, CREATE CLASS FOR TOWN
             }

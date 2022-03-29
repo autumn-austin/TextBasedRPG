@@ -71,7 +71,10 @@ namespace RPGAdventure
 
                 }
                 else if (input == "e" || input == "exit")
-                    break;
+                {
+                    new Town().Load(Program.currentPlayer);
+                }
+                break;
             }
         }
         static void TryBuy(string item, int cost, Player p)

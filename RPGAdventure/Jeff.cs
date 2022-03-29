@@ -91,6 +91,7 @@ namespace RPGAdventure
             {
                 Console.WriteLine($"You use a small Microscope to distract {this.Name} as you slink away to safety.");
                 Console.ReadKey();
+                Console.ResetColor();
                 new Town().Load(Program.currentPlayer);
                 // CALL GO TO TOWN, FROM TOWN CAN ENTER STORE, CREATE CLASS FOR TOWN
             }

@@ -83,6 +83,7 @@ namespace RPGAdventure
             {
                 Console.WriteLine($"You use a ball of Mozzorella to distract {this.Name} as you slink away to safety.");
                 Console.ReadKey();
+                Console.ResetColor();
                 new Town().Load(Program.currentPlayer);
                 // CALL GO TO TOWN, FROM TOWN CAN ENTER STORE, CREATE CLASS FOR TOWN
             }

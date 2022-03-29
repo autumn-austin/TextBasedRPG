@@ -97,6 +97,7 @@ ___/_,__,_(__|IIIIII|__)__)/   /{~}}
             {
                 Console.WriteLine("You use your charm and wit to distract " + this.Name + " as you slink away to safety.");
                 Console.ReadKey();
+                Console.ResetColor();
                 new Town().Load(Program.currentPlayer);
                 // CALL GO TO TOWN, FROM TOWN CAN ENTER STORE, CREATE CLASS FOR TOWN
             }
