@@ -75,6 +75,10 @@ namespace RPGAdventure
             {
                 new Town().Load(Program.currentPlayer);
             }
+            else
+            {
+                new Apartment().Load(Program.currentPlayer);
+            }
             return "Be on with you, fair adventurer!";
 
         }

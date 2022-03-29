@@ -46,7 +46,9 @@ namespace RPGAdventure
             }
             else if (input == "t" || input == "town hall")
             {
-
+                Console.WriteLine("The Town Hall seems to be locked!");
+                Console.ReadKey();
+                new Town().Load(Program.currentPlayer);
             }
             else if (input == "h" || input == "home")
             {
@@ -54,11 +56,15 @@ namespace RPGAdventure
             }
             else if (input == "f" || input == "forest")
             {
-                Forest.RandomEnemy();
+                new Forest().Load(Program.currentPlayer);
             }
             else if (input == "e" || input == "exit")
             {
                 MainMenu.Opening();
+            }
+            else
+            {
+                new Town().Load(Program.currentPlayer);
             }
         }
     }

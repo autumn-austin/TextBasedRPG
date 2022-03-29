@@ -74,6 +74,10 @@ namespace RPGAdventure
                 {
                     new Town().Load(Program.currentPlayer);
                 }
+                else
+                {
+                    new Shop().Load(Program.currentPlayer);
+                }
                 break;
             }
         }

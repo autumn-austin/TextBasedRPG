@@ -28,6 +28,9 @@ namespace RPGAdventure
             if (input.ToLower() == "m" || input.ToLower() == "music player")
             {
                 //create music player to play music for user
+                Console.WriteLine("You don't have any records to play yet!");
+                Console.ReadKey();
+                new LivingRoom().Load(Program.currentPlayer);
             }
             else if (input.ToLower() == "b" || input.ToLower() == "bedroom")
             {

@@ -12,7 +12,7 @@ namespace RPGAdventure
         public string name;
         public int saveID;
         public int gold = 500;
-        public int health = 10;
+        public int health = 15;
         public int damage = 0;
         public int armorValue = 0;
         public int potion = 5;

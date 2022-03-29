@@ -6,10 +6,14 @@ using System.Threading.Tasks;
 
 namespace RPGAdventure
 {
-    public class Forest
+    public class Forest : Place
     {
+        public void Load(Player p)
+        {
+            Run(p);
+        }
         static Random rand = new Random();
-        public static void RandomEnemy()
+        public void Run(Player p)
         {
             switch (rand.Next(0, 3))
             {
@@ -30,6 +34,8 @@ namespace RPGAdventure
                     mon4.Menu();
                     break;
             }
+
+            new Town().Load(Program.currentPlayer);
         }
     }
 }

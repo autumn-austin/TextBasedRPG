@@ -74,8 +74,10 @@ namespace RPGAdventure
 
             if (Program.currentPlayer.health <= 0)
             {
-                Console.WriteLine($"The {this.Name} has killed you... Don't give up now {Program.currentPlayer.name}!");
+                Console.WriteLine($"{this.Name} has killed you... Don't give up now {Program.currentPlayer.name}!");
                 Console.ReadKey();
+                Console.ResetColor();
+                Program.currentPlayer.health = 15;
                 MainMenu.Opening();
             }
             Console.ReadKey();
