@@ -1,8 +1,15 @@
+PRE-REQUISITES FOR DEMO:
+
+Download to following to your PC:
+[Visual Studio](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSLandingPage&cid=2030&passive=false)
+and
+[.NET Version 5.0](https://dotnet.microsoft.com/en-us/download/dotnet/5.0)
+
 Hello and welcome!
 
 This is a demo for a text based adventure game, created by myself. In this demo you will find your character, who is assigned a name at the beginning of the game (you may use your own, or you may choose to create a new character altogether!), exploring a new place that they can't recall how they got there. You will encounter battle sequences in which you will have a variety of options to choose from, NPC encounters in which you may gather story information from, and your own apartment in which you may save your player stats to!
 
-To operate this game demo, you need to acquire the game code from GitHub (what you are on currently), and run the code as normal.
+To operate this game demo, you need to acquire the game code from GitHub (what you are on currently), by downloading the file paths, and saving them into a folder that is easily accessible to you. Open the RPGAdventure folder and double click on the RPGAdventure.sln file to open the solution file. From here, you may choose to navigate around the code, or press F5 (run) to start the program and play the demo.
 
 You will be prompted with a menu screen, in which you may load player stat files if they exist, or choose to start a new game with the basic player stats every player will be given in the beginning. 
 
@@ -20,7 +27,7 @@ To navigate the town, and your apartment, you will also press the first letter o
 -E for "EXIT"
 -S for "SHOP"
 
-(Please note, this is a demo and not all attributes in the town square have written functionality, currently the shop and home are the only resting places you may go, the town will soon have a community board for quests, currently the forest is a randomized enemy encounter ONLY, you may fight till the death!)
+(Please note, this is a demo and not all attributes in the town square have written functionality, currently the shop and home are the only resting places you may go, the town hall will soon have a community board for quests, currently the forest is a randomized enemy encounter ONLY, you may fight till the death!)
 
 You may also choose to exit the game to the main menu from your home, in which you will return to the main menu. From the main menu, you may exit the program entirely. 
 
