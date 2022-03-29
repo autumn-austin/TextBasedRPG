@@ -1,6 +1,6 @@
 PRE-REQUISITES FOR DEMO:
 
-Download to following to your PC:
+Download the following to your PC:
 [Visual Studio](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSLandingPage&cid=2030&passive=false)
 and
 [.NET Version 5.0](https://dotnet.microsoft.com/en-us/download/dotnet/5.0)
