@@ -32,3 +32,8 @@ To navigate the town, and your apartment, you will also press the first letter o
 You may also choose to exit the game to the main menu from your home, in which you will return to the main menu. From the main menu, you may exit the program entirely. 
 
 Thanks for checking out my small demo, and happy coding!
+
+(The three met requirements met for the Code Louisville course:
+- Master loop implemented where user can return to main menu screen and choose to exit the program.
+- Class inheritence where the enemies have all enherited properties from the Enemy class, as well as the setting classes inheriting properties from the Place class.
+- And finally, serializing player stats to an xml file, and deserializing that xml file to a variable.)
